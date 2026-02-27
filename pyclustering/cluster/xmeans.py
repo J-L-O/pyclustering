@@ -611,10 +611,11 @@ class xmeans:
                 sigma_sq += self.__metric(self.__pointer_data[index_object], centers[index_cluster])
 
             N += len(clusters[index_cluster])
-      
+
+        p = (K - 1) + dimension * K + 1
+        
         if N - K > 0:
             sigma_sq /= (N - K)
-            p = (K - 1) + dimension * K + 1
 
             # in case of the same points, sigma_sqrt can be zero (issue: #407)
             sigma_multiplier = 0.0
@@ -661,3 +662,4 @@ class xmeans:
         if self.__beta < 0.0 or self.__beta > 1.0:
             raise ValueError("Parameter for the probabilistic bound Q(beta) should in the following range [0, 1] "
                              "(current value: '%f')." % self.__beta)
+
